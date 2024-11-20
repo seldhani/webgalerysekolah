@@ -30,7 +30,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label for="kategori_id" class="form-label">Kategori ID</label>
+                                <label for="kategori_id" class="form-label">Kategori</label>
                                 <select name="kategori_id" id="kategori" class="form-control" required>
 
                                     @foreach ($categories as $kategori)

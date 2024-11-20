@@ -70,6 +70,7 @@
                                     <label for="judul">Judul</label>
                                     <input type="text" name="judul" id="judul" class="form-control"
                                         style="box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);" required>
+                                        <p>Sesuaikan dengan judul post</p>
                                 </div>
                             </div>
                             <div class="modal-footer">

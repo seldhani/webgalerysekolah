@@ -90,30 +90,15 @@ public function update(Request $request, Post $post)
 }
 
 
-    public function destroy($id)
-    {
-        try {
-            // Mulai transaksi database
-            DB::beginTransaction();
-            
-            // Hapus post
-            $posts = Post::findOrFail($id);
-            $posts->delete();
-            
-            // Reset auto-increment dan atur ulang ID
-            DB::statement('SET @counter = 0');
-            DB::statement('UPDATE posts SET id = @counter:=@counter+1');
-            DB::statement('ALTER TABLE posts AUTO_INCREMENT = 1');
-            
-            // Commit transaksi
-            DB::commit();
-            
-            return redirect('/posts')->with('success', 'Unggahan berhasil dihapus');
-            
-        } catch (\Exception $e) {
-            // Rollback jika terjadi error
-            DB::rollback();
-            return redirect('/posts')->with('error', 'Terjadi kesalahan saat menghapus unggahan');
-        }
+public function destroy($id)
+{
+    $posts = Post::find($id);
+    if (!$posts) {
+        return redirect('/posts')->with('error', 'Post tidak ditemukan');
     }
+
+    $posts->delete();
+    return redirect('/posts')->with('success', 'Unggahan berhasil dihapus');
+}
+
 }
